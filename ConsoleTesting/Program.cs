@@ -15,11 +15,7 @@ namespace ConsoleTesting
         static void Main(string[] args)
         {
 
-            Rectangle rectangle = new Rectangle();
-            Circle circle = new Circle();
 
-            WriteLine(rectangle.Draw());
-            WriteLine(circle.Draw());
 
 
             ReadKey();
