@@ -50,6 +50,7 @@
     <Compile Include="Drinks\IHotDrink.cs" />
     <Compile Include="Drinks\Tea.cs" />
     <Compile Include="Ghost.cs" />
+    <Compile Include="MyLittleException.cs" />
     <Compile Include="People\IFoe.cs" />
     <Compile Include="People\IFriend.cs" />
     <Compile Include="People\Person.cs" />

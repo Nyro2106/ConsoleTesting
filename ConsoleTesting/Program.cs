@@ -8,6 +8,7 @@ using static System.Console;
 using System.Net;
 using ConsoleTesting.Shapes;
 using ConsoleTesting.Drinks;
+using System.Diagnostics;
 
 namespace ConsoleTesting
 {
@@ -20,19 +21,26 @@ namespace ConsoleTesting
 
 
 
-
-
             ReadKey();
+            }
+
+        
+        static void WriteSomeStuff()
+        {
+            WriteLine("Please write something nice");
+            string input = ReadLine();
+
+            if (string.IsNullOrEmpty(input) || input == "Nah :I")
+            {
+                throw new MyLittleException();
+            }
         }
-
-
-
 
         static string TextSearch(string inputText, string textToSearch)
         {
             int counter = 0;
             int indexOfFoundText = 0;
-            
+
             for (int i = 0; i < inputText.Length; i++)
             {
                 indexOfFoundText = i;
