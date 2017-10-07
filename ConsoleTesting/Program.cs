@@ -17,14 +17,70 @@ namespace ConsoleTesting
         static void Main(string[] args)
         {
 
-
-
+            Fight();
 
 
             ReadKey();
-            }
+        }
 
-        
+        static void Fight()
+        {
+            Boss epicMob = new Boss("Hogger", 50, 500, 500);
+            List<WoWCreature> players = new List<WoWCreature>()
+            {
+                new Warrior("Leeroy Jenkins", 20, 150, 150),
+                new Shaman("Fac3Melt0r", 8, 100, 100, 25),
+                new Warrior("Killaxe, the Orc", 80, 500, 500)
+            };
+
+            int playersAlive = players.Count;
+
+            WriteLine("Beginne Kampf!");
+            WriteLine(((Warrior)players[0]).WarCry);
+
+            while (!epicMob.IsDead && playersAlive > 0)
+            {
+                foreach (var player in players)
+                {
+                    if (player.IsDead)
+                    {
+                        continue;
+                    }
+
+                    WriteLine($"{player.Name} ist dran, er hat noch {player.CurrentHealth} Leben");
+                    WriteLine(player.Attack(epicMob));
+
+                    if (epicMob.CurrentHealth == 0)
+                    {
+                        epicMob.IsDead = true;
+                        break;
+                    }
+
+                    if (player is Shaman)
+                    {
+                        WriteLine(((Shaman)player).Heal(player));
+                    }
+
+                    WriteLine(epicMob.Attack(player));
+
+                    if (player.CurrentHealth == 0)
+                    {
+                        player.IsDead = true;
+                        playersAlive--;
+                    }
+                    WriteLine($"Nächste Runde, {epicMob.Name} hat noch {epicMob.CurrentHealth} Leben");
+                }
+            }
+            if (epicMob.IsDead)
+            {
+                WriteLine("Gewonnen! Das gibt fetten Loot!");
+            }
+            else
+            {
+                WriteLine("Verloren! Buuuh, ihr seid Scheiße!");
+            }
+        }
+
         static void WriteSomeStuff()
         {
             WriteLine("Please write something nice");
