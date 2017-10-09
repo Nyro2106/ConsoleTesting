@@ -17,7 +17,25 @@ namespace ConsoleTesting
         static void Main(string[] args)
         {
 
-            Fight();
+            Dish[] dishes = Dish.GetDishes();
+
+            var groupedDishes = from dish in dishes
+                                orderby dish.Calories descending
+                                group dish by dish.Calories > 500;
+                               
+                                
+
+            foreach (var group in groupedDishes)
+            {
+                WriteLine(group.Key ? "\nNicer Dicer:" : "\nWer soll davon satt werden :I:");
+                foreach (var dish in group)
+                {
+                    WriteLine($"{dish.Calories}kcal\t{dish.Name}");
+                }
+            }
+
+
+
 
 
             ReadKey();
