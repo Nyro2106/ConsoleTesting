@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConsoleTesting.Delegates;
+using ConsoleTesting.Events;
+using ConsoleTesting.People;
 using ConsoleTesting.Exceptions;
 using ConsoleTesting.Shapes;
 using static System.Console;
@@ -11,6 +13,27 @@ namespace ConsoleTesting
   internal class Program
   {
     private static void Main(string[] args)
+    {
+
+      ReadKey();
+    }
+
+    private static void TestBarSituation()
+    {
+      Bar bar = new Bar();
+      Person pers1 = new Person() { Name = "Phillip" };
+      Person pers2 = new Person() { Name = "TimTom" };
+      pers1.GetIn(bar);
+      pers2.GetIn(bar);
+      bar.SpendRound();
+
+      pers2.GetOut(bar);
+
+      bar.SpendRound();
+
+    }
+
+    public static void TestCalculationDelegate()
     {
       WriteLine("Was soll berechnet werden");
       WriteLine("1-Addieren, 2-Subtrahieren, 3-Multipliziern, 4-Dividieren");
@@ -23,11 +46,6 @@ namespace ConsoleTesting
       {
         WriteLine(ex.Message);
       }
-      
-
-
-
-      ReadKey();
     }
 
     public static int[] ReverseSeq(int n)
