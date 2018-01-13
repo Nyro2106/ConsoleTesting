@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Delegates\Calculation.cs" />
+    <Compile Include="Exceptions\InvalidCalculationException.cs" />
     <Compile Include="LINQ\Dish.cs" />
     <Compile Include="LINQ\WoWItem.cs" />
     <Compile Include="WoW\Boss.cs" />

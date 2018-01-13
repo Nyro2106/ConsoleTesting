@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleTesting.Delegates;
+using ConsoleTesting.Exceptions;
 using ConsoleTesting.Shapes;
 using static System.Console;
 
@@ -10,19 +12,35 @@ namespace ConsoleTesting
   {
     private static void Main(string[] args)
     {
-
-      int[] arr = ReverseSeq(6);
-
-      for (int i = 0; i < arr.Length; i++)
+      WriteLine("Was soll berechnet werden");
+      WriteLine("1-Addieren, 2-Subtrahieren, 3-Multipliziern, 4-Dividieren");
+      string type = ReadLine();
+      try
       {
-        WriteLine(arr[i]);
+        Calculation.Calculate(type, 25, 4);
       }
+      catch (Exception ex)
+      {
+        WriteLine(ex.Message);
+      }
+      
+
+
 
       ReadKey();
     }
 
     public static int[] ReverseSeq(int n)
     {
+
+      //int[] arr = ReverseSeq(6);
+
+      //for (int i = 0; i < arr.Length; i++)
+      //{
+      //  WriteLine(arr[i]);
+      //}
+
+
       int size = n;
       int[] arr = new int[n];
       for (int i = 0; i < n; i++)
