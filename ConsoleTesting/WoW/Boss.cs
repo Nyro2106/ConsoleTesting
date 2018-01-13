@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleTesting
+﻿namespace ConsoleTesting
 {
-    class Boss : WoWCreature
+  internal class Boss : WoWCreature
+  {
+    public Boss(string name, int damage, int currentHealth, int maxHealth) : base(name, damage, currentHealth, maxHealth)
     {
-        public Boss(string name, int damage, int currentHealth, int maxHealth) : base(name, damage, currentHealth, maxHealth)
-        {
-        }
     }
+  }
 }
