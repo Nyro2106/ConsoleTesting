@@ -7,6 +7,7 @@ using ConsoleTesting.People;
 using ConsoleTesting.Exceptions;
 using ConsoleTesting.Shapes;
 using static System.Console;
+using ConsoleTesting.Extensions;
 
 namespace ConsoleTesting
 {
@@ -15,7 +16,62 @@ namespace ConsoleTesting
     private static void Main(string[] args)
     {
 
+
       ReadKey();
+    }
+
+    private static void TestLINQOrderByReverse()
+    {
+      int[] numbers = new int[] { 0, 2, 6, 2, 4, 5, 6, 2, 11, 22, 3, 8, 7, 6, 3, 2, 4 };
+
+      var sortedNumbers = numbers.OrderBy(n => n);
+      var reversedSortedNumbers = sortedNumbers.Reverse();
+
+      foreach (var number in sortedNumbers)
+      {
+        WriteLine(number);
+      }
+
+      foreach (var number in reversedSortedNumbers)
+      {
+        WriteLine(number);
+      }
+    }
+
+    private static void TestLINQSkipTakeWhile()
+    {
+      int[] numbers = new int[] { 0, 2, 6, 2, 4, 5, 6, 2, 11, 22, 3, 8, 7, 6, 3, 2, 4 };
+      var evenNumbers = numbers.Skip(1).TakeWhile(n => n % 2 == 0);
+      foreach (var number in evenNumbers)
+      {
+        WriteLine(number);
+      }
+    }
+
+    private static void TestFunc()
+    {
+      string first = ReadLine();
+      string last = ReadLine();
+
+      Func<string, string, string> GetFullName = (firstName, lastName) => firstName + " " + lastName;
+
+      WriteLine(GetFullName(first, last));
+    }
+
+    private static void TestLambda()
+    {
+      string[] stuff = new string[] { "EinZeug", "ZweiZeug", "DreiZeug" };
+      string input = Console.ReadLine();
+      var lambdaBoi = stuff.Where(item => item.ToLower().Contains($"{input}"));
+
+      WriteLine(lambdaBoi.FirstOrDefault());
+    }
+
+    private static void TestExtensionMethod()
+    {
+      DateTime dateTime = DateTime.Now;
+      int daysSinceMillenium = dateTime.DaysSinceMillenium();
+      WriteLine(daysSinceMillenium);
     }
 
     private static void TestBarSituation()
