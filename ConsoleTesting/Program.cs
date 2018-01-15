@@ -8,6 +8,8 @@ using ConsoleTesting.Exceptions;
 using ConsoleTesting.Shapes;
 using static System.Console;
 using ConsoleTesting.Extensions;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace ConsoleTesting
 {
@@ -15,9 +17,41 @@ namespace ConsoleTesting
   {
     private static void Main(string[] args)
     {
-
+      
 
       ReadKey();
+    }
+
+    private static void AnalyzePerson()
+    {
+      Person person = new Person();
+      person.FirstName = "Hans";
+      person.LastName = "Hinterlader";
+
+      Type personType = person.GetType();
+      WriteLine($"Typ: {personType.Name}");
+
+      PropertyInfo[] properties = personType.GetProperties();
+
+      foreach (var property in properties)
+      {
+        WriteLine($"Eigentschaft: {property.Name} - Wert: {property.GetValue(person)}");
+      }
+
+      MethodInfo fullNameMethod = personType.GetMethod("GetFullName");
+      WriteLine($"Methode {fullNameMethod.Name} aufgerufen ergibt: {fullNameMethod.Invoke(person, null)}");
+    }
+
+    [Conditional("DEBUG")]
+    private static void JustADebugCall()
+    {
+      WriteLine("You only see me when you deeeeeebug");
+    }
+
+    [Obsolete("Tis is ze obsolete stuff")]
+    private static void SomeObsoleteStuff()
+    {
+      WriteLine("Pretty old guy, for a white fly.. oder so :I");
     }
 
     private static void TestLINQOrderByReverse()
@@ -77,8 +111,8 @@ namespace ConsoleTesting
     private static void TestBarSituation()
     {
       Bar bar = new Bar();
-      Person pers1 = new Person() { Name = "Phillip" };
-      Person pers2 = new Person() { Name = "TimTom" };
+      Person pers1 = new Person() { FirstName = "Phillip" };
+      Person pers2 = new Person() { FirstName = "TimTom" };
       pers1.GetIn(bar);
       pers2.GetIn(bar);
       bar.SpendRound();

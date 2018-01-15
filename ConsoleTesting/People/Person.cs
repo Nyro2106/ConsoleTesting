@@ -5,7 +5,14 @@ namespace ConsoleTesting.People
 {
   internal class Person : IFriend, IFoe
   {
-    public string Name { get; set; }
+    public string FirstName { get; set; }
+
+    public string LastName { get; set; }
+
+    public string GetFullName()
+    {
+      return $"{FirstName} {LastName}";
+    }
 
     public void GetIn(Bar bar)
     {
@@ -19,7 +26,7 @@ namespace ConsoleTesting.People
 
     private void GetARound(object sender, EventArgs e)
     {
-      Console.WriteLine($"{this.Name} freut sich über ein kaltes Getränk");
+      Console.WriteLine($"{this.FirstName} freut sich über ein kaltes Getränk");
     }
 
     string IFriend.GetCalled()
