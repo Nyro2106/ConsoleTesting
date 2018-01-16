@@ -10,6 +10,7 @@ using static System.Console;
 using ConsoleTesting.Extensions;
 using System.Diagnostics;
 using System.Reflection;
+using System.IO;
 
 namespace ConsoleTesting
 {
@@ -22,7 +23,62 @@ namespace ConsoleTesting
       ReadKey();
     }
 
-    private static void AnalyzePerson()
+    private static void TestGetAllEntryExtensions()
+    {
+      string directory = @"D:\Games\Star Wars-The Old Republic";
+      DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+      List<string> extensions = new List<string>();
+      foreach (var file in directoryInfo.GetFiles())
+      {
+        if (!extensions.Contains(file.Extension.ToLower()))
+        {
+          extensions.Add(file.Extension);
+          WriteLine($"Gefundene Endung: {file.Extension}");
+        }
+      }
+    }
+
+    private static void TestDiary()
+    {
+      string directory = @"C:\users\nyro\desktop\";
+      string fileName = $@"{directory}\diary.txt";
+      WriteLine($"Letzte Änderung {File.GetLastWriteTime(fileName)}");
+      WriteLine("Bitte neuen Eintrag eingeben:");
+      string input = ReadLine();
+      string newEntry = $"[{DateTime.Now}] {input}";
+
+      if (File.Exists(fileName))
+      {
+        WriteLine("Bisher enthaltener Text:");
+        string[] existingText = File.ReadAllLines(fileName);
+        foreach (var line in existingText)
+        {
+          WriteLine(line);
+        }
+      }
+      WriteLine("=====================");
+      WriteLine("Neu hinzugefügter Text:");
+      if (!Directory.Exists(directory))
+      {
+        Directory.CreateDirectory(directory);
+      }
+      
+      File.AppendAllText(fileName, Environment.NewLine + newEntry);
+      WriteLine(newEntry);
+      WriteLine("=====================");
+    }
+
+    private static void TestWriteText()
+    {
+      string path = @"C:\users\nyro\desktop\test.txt";
+      string stuffToWrite = "Und hier kommt noch mehr Scheiß yeah!";
+
+      File.AppendAllText(path, stuffToWrite);
+
+      WriteLine(File.ReadAllText(path));
+    }
+
+    private static void TestAnalyzePerson()
     {
       Person person = new Person();
       person.FirstName = "Hans";
@@ -43,13 +99,13 @@ namespace ConsoleTesting
     }
 
     [Conditional("DEBUG")]
-    private static void JustADebugCall()
+    private static void TestJustADebugCall()
     {
       WriteLine("You only see me when you deeeeeebug");
     }
 
     [Obsolete("Tis is ze obsolete stuff")]
-    private static void SomeObsoleteStuff()
+    private static void TestSomeObsoleteStuff()
     {
       WriteLine("Pretty old guy, for a white fly.. oder so :I");
     }
@@ -138,7 +194,7 @@ namespace ConsoleTesting
       }
     }
 
-    public static int[] ReverseSeq(int n)
+    public static int[] TestReverseSeq(int n)
     {
 
       //int[] arr = ReverseSeq(6);
@@ -159,7 +215,7 @@ namespace ConsoleTesting
       return arr;
     }
 
-    public static void GetChings(int maxPersons)
+    public static void TestGetChings(int maxPersons)
     {
       int currentChings = 0;
       int[] chingsArr = new int[maxPersons];
@@ -179,7 +235,7 @@ namespace ConsoleTesting
      
     }
 
-    public static string RemoveChar(string s)
+    public static string TestRemoveChar(string s)
     {
       string returnString = "";
       for (int i = 1; i < s.Length - 1; ++i)
@@ -203,7 +259,7 @@ namespace ConsoleTesting
     //  }
     //}
 
-    private static void Fight()
+    private static void TestFight()
     {
       Boss epicMob = new Boss("Hogger", 50, 500, 500);
       List<WoWCreature> players = new List<WoWCreature>()
@@ -261,7 +317,7 @@ namespace ConsoleTesting
       }
     }
 
-    private static void WriteSomeStuff()
+    private static void TestWriteSomeStuff()
     {
       WriteLine("Please write something nice");
       string input = ReadLine();
@@ -272,7 +328,7 @@ namespace ConsoleTesting
       }
     }
 
-    private static string TextSearch(string inputText, string textToSearch)
+    private static string TestTextSearch(string inputText, string textToSearch)
     {
       int counter = 0;
       int indexOfFoundText = 0;
@@ -307,7 +363,7 @@ namespace ConsoleTesting
       return "Der gesuchte Text wurde nicht gefunden";
     }
 
-    private static void StringTeiler(string input, int start, int end)
+    private static void TestStringTeiler(string input, int start, int end)
     {
       string temp = "";
       for (int i = start; i < end; i++)
@@ -317,7 +373,7 @@ namespace ConsoleTesting
       WriteLine(temp);
     }
 
-    private static void GetPrime(int limit)
+    private static void TestGetPrime(int limit)
     {
       bool isPrime;
       for (int i = 2; i < limit; i++)
