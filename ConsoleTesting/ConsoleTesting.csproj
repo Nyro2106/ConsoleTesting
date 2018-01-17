@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\Calculation.cs" />
+    <Compile Include="Disposition\DisposeTest.cs" />
     <Compile Include="Events\Bar.cs" />
     <Compile Include="Exceptions\InvalidCalculationException.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />

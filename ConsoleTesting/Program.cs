@@ -11,6 +11,7 @@ using ConsoleTesting.Extensions;
 using System.Diagnostics;
 using System.Reflection;
 using System.IO;
+using ConsoleTesting.Disposition;
 
 namespace ConsoleTesting
 {
@@ -18,9 +19,56 @@ namespace ConsoleTesting
   {
     private static void Main(string[] args)
     {
-      
+      TestDispose();
 
       ReadKey();
+    }
+
+    private static void TestDispose()
+    {
+      try
+      {
+        using (DisposeTest dispose = new DisposeTest())
+        {
+          WriteLine(dispose.Number);
+          throw new Exception();
+          WriteLine("Ich bin dein using, brudah");
+        }
+      }
+      catch (Exception)
+      {
+        WriteLine("Da ist sie, die Ex-Ception");
+      }
+    }
+
+    private static void TestSetCreationTimeOnFile()
+    {
+      string directory = @"C:\users\nyro\desktop\";
+      string fileName = $@"{directory}\sum Data.txt";
+      File.AppendAllText(fileName, "Text");
+      File.SetCreationTime(fileName, new DateTime(1671, 12, 04, 21, 54, 31));
+      File.SetLastWriteTime(fileName, new DateTime(1672, 03, 01, 11, 25, 27));
+      File.SetLastAccessTime(fileName, new DateTime(1672, 03, 01, 11, 25, 27));
+      WriteLine("File created");
+    }
+
+    private static void TestGetDriveInfo()
+    {
+      DriveInfo[] drives = DriveInfo.GetDrives();
+      double giga = 1024 * 1024 * 1024;
+      foreach (var drive in drives)
+      {
+        if (drive.IsReady)
+        {
+          WriteLine($"Name: {drive.Name}\n" +
+          $"Typ: {drive.DriveType}\n" +
+          $"Freier Speicher: {(drive.AvailableFreeSpace / giga).ToString("0.00")} Gb\n" +
+          $"Gesamtgröße: {(drive.TotalSize / giga).ToString("0.00")} Gb\n" +
+          $"Wurzeldirektion: {drive.RootDirectory}\n" +
+          $"Label: {drive.VolumeLabel}\n");
+          WriteLine(); 
+        }
+      }
     }
 
     private static void TestGetAllEntryExtensions()
