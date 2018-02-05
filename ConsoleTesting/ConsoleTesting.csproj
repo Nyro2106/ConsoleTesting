@@ -49,6 +49,7 @@
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="LINQ\Dish.cs" />
     <Compile Include="LINQ\WoWItem.cs" />
+    <Compile Include="Serialization\SerializablePerson.cs" />
     <Compile Include="WoW\Boss.cs" />
     <Compile Include="Ghosts\CannibalGhost.cs" />
     <Compile Include="Drinks\Coffee.cs" />

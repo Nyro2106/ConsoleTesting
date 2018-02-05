@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.IO;
 using ConsoleTesting.Disposition;
+using ConsoleTesting.Serialization;
 
 namespace ConsoleTesting
 {
@@ -19,9 +20,27 @@ namespace ConsoleTesting
   {
     private static void Main(string[] args)
     {
-      TestDispose();
+      
 
       ReadKey();
+    }
+
+    private static void SerializationTestLoad()
+    {
+      string path = @"C:\users\nyro\desktop\test.txt";
+      SerializablePerson person = new SerializablePerson();
+
+      person = SerializablePerson.Load(path);
+
+      WriteLine($"Des isch der {person.Name}, der isch {person.Age} Jahre alt.");
+    }
+
+    private static void SerializationTestSave()
+    {
+      string path = @"C:\users\nyro\desktop\test.txt";
+      SerializablePerson person = new SerializablePerson() { Name = "Hans Wurst", Age = 66 };
+
+      person.Save(path);
     }
 
     private static void TestDispose()
