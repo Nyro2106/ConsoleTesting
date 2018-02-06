@@ -13,6 +13,10 @@ using System.Reflection;
 using System.IO;
 using ConsoleTesting.Disposition;
 using ConsoleTesting.Serialization;
+using ConsoleTesting.Restaurant;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace ConsoleTesting
 {
@@ -23,6 +27,70 @@ namespace ConsoleTesting
       
 
       ReadKey();
+    }
+
+    private static void RestaurantTest()
+    {
+      Guest[] guests = new Guest[]
+      {
+        new Guest { Name = "Schrödiboie", FavoriteDishes = new Dish[]
+        {
+          new Dish() { Name = "Pommes", Type = DishType.Warm },
+          new Dish() { Name = "Schnitzel", Type = DishType.Warm}
+        }
+        },
+        new Guest { Name = "Schrödies Katze", FavoriteDishes = new Dish[]
+        {
+          new Dish() { Name = "Katzenfutter, duh", Type = DishType.Cold }
+        }
+        }
+      };
+
+      string path = @"C:\users\nyro\desktop\test.txt";
+
+      //Binär-Serialisiert
+      //BinaryFormatter formatter = new BinaryFormatter();
+      //using (Stream stream = File.OpenWrite(path))
+      //{
+      //  formatter.Serialize(stream, guests);
+      //}
+
+      //Binär-Deserialisiert
+      //BinaryFormatter formatter = new BinaryFormatter();
+      //using (Stream stream = File.OpenRead(path))
+      //{
+      //  Guest[] deserializedGuests = (Guest[])formatter.Deserialize(stream);
+      //}
+
+
+      //XML-Serialisiert
+      //XmlSerializer serializer = new XmlSerializer(typeof(Guest[]));
+      //using (Stream stream = File.OpenWrite(path))
+      //{
+      //  serializer.Serialize(stream, guests);
+      //}
+
+      //XML-Deserialisiert
+      //XmlSerializer serializer = new XmlSerializer(typeof(Guest[]));
+      //using (Stream stream = File.OpenRead(path))
+      //{
+      //  Guest[] deserializedGuests = (Guest[])serializer.Deserialize(stream);
+      //}
+
+      //JSON-Serialisiert
+      //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Guest[]));
+      //using (Stream stream = File.OpenWrite(path))
+      //{
+      //  serializer.WriteObject(stream, guests);
+      //}
+
+      //JSON-Deserialisiert
+      //DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Guest[]));
+      //using (Stream stream = File.OpenRead(path))
+      //{
+      //  Guest[] deserializedGuests = (Guest[])serializer.ReadObject(stream);
+      //}
+
     }
 
     private static void SerializationTestLoad()
