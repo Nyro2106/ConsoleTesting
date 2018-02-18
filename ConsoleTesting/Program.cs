@@ -22,11 +22,87 @@ namespace ConsoleTesting
 {
   internal class Program
   {
+    private static string desktopPath = @"C:\users\nyro\desktop\test.pdf";
+
     private static void Main(string[] args)
     {
+
       
 
       ReadKey();
+    }
+
+    private static void TestDownloadFiles()
+    {
+      var urls = new Uri[]
+      {
+        new Uri("http://gxmedia.galileo-press.de/leseproben/3277/galileocomputing_schroedinger_html5.pdf"),
+        new Uri("https://forum.furbase.de/"),
+        //new Uri("bit.ly/leseprobe_programmieren_lernen"),
+        //new Uri("bit.ly/leseprobe_schroedinger_abap")
+      };
+
+      foreach (var url in urls)
+      {
+        using (System.Net.WebClient client = new System.Net.WebClient())
+        {
+          string userInfo = url.UserInfo;
+          string fileName = url.Segments[url.Segments.Length - 1];
+          Console.WriteLine($"Lade {fileName} herunter");
+          Console.WriteLine(userInfo);
+          client.DownloadFile(url, desktopPath);
+        }
+      }
+    }
+
+    private static void TestWebClient()
+    {
+      using (System.Net.WebClient client = new System.Net.WebClient())
+      {
+        string htmlContent = client.DownloadString("http://www.rheinwerk-verlag.de");
+        File.WriteAllText(desktopPath, htmlContent);
+      }
+    }
+
+    private static void TestWebRequest()
+    {
+      System.Net.WebRequest request = System.Net.HttpWebRequest.Create("http://www.worldofwarcraft.com");
+      using (System.Net.WebResponse response = request.GetResponse())
+      {
+        System.IO.Stream stream = response.GetResponseStream();
+        using (System.IO.StreamReader reader = new System.IO.StreamReader(stream))
+        {
+          string htmlContent = reader.ReadToEnd();
+          File.WriteAllText(desktopPath, htmlContent);
+        }
+      }
+    }
+
+    private static void PrintLompf()
+    {
+      WriteLine("Press Enter for Lompf");
+      ReadLine();
+      WriteLine("Loooooompf <3");
+    }
+
+    private static void HeftigesProgrammUmRauszufindenWasWirSchauenSollen()
+    {
+      Random rand = new Random();
+
+      WriteLine("Herzlich willkommen beim Entscheidungshelfdings");
+
+      WriteLine("Bitte Enter drücken zum Starten");
+
+      ReadLine();
+
+      if (rand.Next(1, 100) % 2 == 0)
+      {
+        WriteLine("Thor ihr schauen müsst");
+      }
+      else
+      {
+        WriteLine("Eisenmann es ist");
+      }
     }
 
     private static void RestaurantTest()
@@ -46,7 +122,7 @@ namespace ConsoleTesting
         }
       };
 
-      string path = @"C:\users\nyro\desktop\test.txt";
+      //string path = @"C:\users\nyro\desktop\test.txt";
 
       //Binär-Serialisiert
       //BinaryFormatter formatter = new BinaryFormatter();
