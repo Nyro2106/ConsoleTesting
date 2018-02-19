@@ -17,6 +17,7 @@ using ConsoleTesting.Restaurant;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 
 namespace ConsoleTesting
 {
@@ -26,10 +27,46 @@ namespace ConsoleTesting
 
     private static void Main(string[] args)
     {
-
+      TestMatrixStuff();
       
 
       ReadKey();
+    }
+
+    private static void TestMatrixStuff()
+    {
+      Random rand = new Random();
+      for (int i = 0; i < 1000000000; i++)
+      {
+        Console.WriteLine("xXx".PadLeft(rand.Next(1, 100)));
+      }
+    }
+
+    private static void TestTasks()
+    {
+      Task t1 = Task.Run(() =>
+      {
+        for (int i = 0; i < 100; i++)
+        {
+          Console.WriteLine("Ich melde mich alle 1.5 Sekunden");
+          System.Threading.Thread.Sleep(1500);
+          Console.WriteLine("Da bin ich wieder, cool hä?!");
+        }
+      });
+
+      Task t2 = Task.Run(() =>
+      {
+        for (int i = 0; i < 100; i++)
+        {
+          Console.WriteLine("Ich bin ein sehr nerviger Oktopus-Mensch, ich komme alls 400 Milli-Sekunden");
+          System.Threading.Thread.Sleep(400);
+          Console.WriteLine("Oooh, da braucht jemand meine Hilfe");
+        }
+      });
+
+      Task.WaitAll(t1, t2);
+
+      WriteLine("Alles fertig!");
     }
 
     private static void TestDownloadFiles()
