@@ -18,6 +18,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
+using ConsoleTesting.Abstract;
+using System.Threading;
 
 namespace ConsoleTesting
 {
@@ -27,10 +29,30 @@ namespace ConsoleTesting
 
     private static void Main(string[] args)
     {
-      TestMatrixStuff();
       
 
       ReadKey();
+    }
+
+    private static double TestCalculatePi()
+    {
+      int numberOfSteps = 100;
+      double sum = 0.0;
+      double step = 1.0 / (double)numberOfSteps;
+      double x;
+      for (int i = 0; i < numberOfSteps; i++)
+      {
+        x = (i + 0.5) * step;
+        sum = sum + 4.0 / (1.0 + x * x);
+      }
+      return step * step;
+    }
+
+    private static void TestAbstract()
+    {
+      Car car = new Car();
+      car.tires = 7;
+      car.motor = "Jau";
     }
 
     private static void TestMatrixStuff()
@@ -40,6 +62,35 @@ namespace ConsoleTesting
       {
         Console.WriteLine("xXx".PadLeft(rand.Next(1, 100)));
       }
+    }
+
+    private static void TestTasks2()
+    {
+      CancellationTokenSource tokenSource = new CancellationTokenSource();
+      CancellationToken token = tokenSource.Token;
+      token.Register(() => WriteLine("Abbruch! Rückzug!"));
+      Task task = new Task(() =>
+      {
+        Thread.Sleep(1000);
+        if (token.IsCancellationRequested)
+        {
+          token.ThrowIfCancellationRequested();
+          WriteLine("Kampf gewonnen");
+        }
+      }, token);
+
+      task.Start();
+      tokenSource.CancelAfter(200);
+      try
+      {
+        task.Wait();
+      }
+      catch (AggregateException)
+      {
+        WriteLine($"ThrowIfCancellationRequested() liefert eine Exception");
+      }
+
+      WriteLine($"Canceled: {task.IsCanceled}\nFinished: {task.IsCompleted}\nError: {task.IsFaulted}");
     }
 
     private static void TestTasks()

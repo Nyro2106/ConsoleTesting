@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Car.cs" />
+    <Compile Include="Abstract\Vehicle.cs" />
     <Compile Include="Delegates\Calculation.cs" />
     <Compile Include="Disposition\DisposeTest.cs" />
     <Compile Include="Events\Bar.cs" />
