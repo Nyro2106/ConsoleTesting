@@ -7,6 +7,9 @@
 *.userosscache
 *.sln.docstates
 
+#Projects
+LompfOMat
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -259,3 +262,8 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/WPFTesting/Assets
+/WPFTesting/LompfOMat.xaml.cs
+/WPFTesting/LompfOMat.xaml
+/WPFTesting/ColorPicker.xaml.cs
+/WPFTesting/ColorPicker.xaml

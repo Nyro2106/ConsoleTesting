@@ -25,14 +25,15 @@ namespace ConsoleTesting
 {
   internal class Program
   {
-    private static string desktopPath = @"C:\users\nyro\desktop\test.pdf";
+    private static string desktopPath = @"C:\users\nyro\desktop\test.txt";
 
     private static void Main(string[] args)
     {
-      
+      TestMatrixStuff();
 
       ReadKey();
     }
+
 
     private static double TestCalculatePi()
     {
@@ -60,7 +61,8 @@ namespace ConsoleTesting
       Random rand = new Random();
       for (int i = 0; i < 1000000000; i++)
       {
-        Console.WriteLine("xXx".PadLeft(rand.Next(1, 100)));
+        Console.WriteLine("Bork".PadLeft(rand.Next(1, 100)));
+        Thread.Sleep(300);
       }
     }
 
@@ -109,7 +111,7 @@ namespace ConsoleTesting
       {
         for (int i = 0; i < 100; i++)
         {
-          Console.WriteLine("Ich bin ein sehr nerviger Oktopus-Mensch, ich komme alls 400 Milli-Sekunden");
+          Console.WriteLine("Ich bin ein sehr nerviger Oktopus-Mensch, ich komme alle 400 Milli-Sekunden");
           System.Threading.Thread.Sleep(400);
           Console.WriteLine("Oooh, da braucht jemand meine Hilfe");
         }
@@ -154,7 +156,7 @@ namespace ConsoleTesting
 
     private static void TestWebRequest()
     {
-      System.Net.WebRequest request = System.Net.HttpWebRequest.Create("http://www.worldofwarcraft.com");
+      System.Net.WebRequest request = System.Net.HttpWebRequest.Create("https://forum.furbase.de/");
       using (System.Net.WebResponse response = request.GetResponse())
       {
         System.IO.Stream stream = response.GetResponseStream();

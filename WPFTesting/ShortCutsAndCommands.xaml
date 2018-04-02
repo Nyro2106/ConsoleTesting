@@ -1,0 +1,77 @@
+﻿<Window x:Class="WPFTesting.ShortCutsAndCommands"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTesting"
+        mc:Ignorable="d"
+        x:Name="MainWindow"
+        Title="ShortCutsAndCommands" Height="450" Width="800">
+   
+
+    <Grid>
+        
+
+        <TabControl>
+            <TabItem Header="Tab 1">
+                <Grid x:Name="UxTab1Grid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--<Label Background="#FFCBCBCB" Grid.Row="1" Grid.ColumnSpan="2"></Label>-->
+                    <StackPanel x:Name="UxHeaderStackPanel" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,5,0,5" Orientation="Horizontal" Background="#FFEEEEEE">
+                        <Image Source="Assets/tiddies.jpg"></Image>
+                        <Button x:Name="UxTab1ClearFieldsButton" Content="Felder le_eren" Background="White" Click="UxTab1ClearFieldsButton_Click"></Button>
+                        <Image Source="Assets/tiddies.jpg"></Image>
+                        <Button Content="Speichern" Background="White"></Button>
+                    </StackPanel>
+                    <StackPanel x:Name="UxTab1StackPanel" Grid.Row="2" Margin="0,20,0,0" >
+                        <Label Content="Label"/> 
+                        <TextBox Text="Test"/>
+                        <TextBox Text="Test"/>
+                        <TextBox Text="Test"/>
+                    </StackPanel>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab 2">
+                <Grid x:Name="UxTab2Grid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel x:Name="UxHeaderTab2StackPanel" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" >
+                        <Image Source="Assets/tiddies.jpg"></Image>
+                        <Button x:Name="UxTab2ClearFieldsButton" Content="Felder le_eren" Background="White" Click="UxTab2ClearFieldsButton_Click"></Button>
+                    </StackPanel>
+                    <Label Background="#FFCBCBCB" Grid.Row="1" Grid.ColumnSpan="2"></Label>
+                    <StackPanel x:Name="UxTab2StackPanel" Grid.Row="2" Margin="0,20,0,0" >
+                        <Label Content="Label"/>
+                        <TextBox Text="Test"/>
+                        <TextBox Text="Test"/>
+                        <TextBox Text="Test"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            
+
+                
+           
+
+        </TabControl>
+
+
+    </Grid>
+</Window>
