@@ -1,6 +1,6 @@
 ﻿namespace ConsoleTesting.Shapes
 {
-  internal class Circle : Shape
+  public class Circle : Shape
   {
     public override string Draw()
     {

@@ -42,5 +42,11 @@ namespace WPFTesting
       ShortCutsAndCommands scac = new ShortCutsAndCommands();
       scac.Show();
     }
+
+    private void UxOpenCryptography_Click(object sender, RoutedEventArgs e)
+    {
+      CryptoWindow window = new CryptoWindow();
+      window.Show();
+    }
   }
 }

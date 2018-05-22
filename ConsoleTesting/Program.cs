@@ -20,6 +20,9 @@ using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using ConsoleTesting.Abstract;
 using System.Threading;
+using ConsoleTesting.Cryptography;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ConsoleTesting
 {
@@ -31,7 +34,62 @@ namespace ConsoleTesting
     {
       TestMatrixStuff();
 
+
       ReadKey();
+    }
+
+    private static void TestDownloadCurrencyExchange()
+    {
+      var url = new Uri("https://www.bundesbank.de/cae/servlet/StatisticDownload?tsId=BBEX3.D.USD.EUR.BB.AC.000&its_csvFormat=de&its_fileFormat=csv&mode=its");
+      using (System.Net.WebClient client = new System.Net.WebClient())
+      {
+        string fileName = url.Segments.Last();       
+        Console.WriteLine($"Lade {fileName} herunter");
+        client.DownloadFile(url, desktopPath);
+        Console.WriteLine("Fertig");
+      }
+    }
+
+    private static void TestTextToByteArray()
+    {
+      byte[] key = Encoding.ASCII.GetBytes("Test");
+
+      foreach (var item in key)
+      {
+        WriteLine(item);
+      }
+
+    }
+
+    private static void TestEncryption(string filePath)
+    {
+
+      string original = "Here is some data to encrypt!";
+
+      // Create a new instance of the RijndaelManaged
+      // class.  This generates a new key and initialization 
+      // vector (IV).
+      using (RijndaelManaged myRijndael = new RijndaelManaged())
+      {
+        var key = new byte[] { 1, 2, 3 };
+        List<byte> arr = new List<byte> { 1, 2, 3 };
+        key = arr.ToArray<byte>();
+
+        //myRijndael.GenerateKey();
+        myRijndael.GenerateIV();
+        // Encrypt the string to an array of bytes.
+        byte[] encrypted = RijndaelAlgorithm.EncryptStringToBytes(original, myRijndael.Key, myRijndael.IV);
+
+        // Decrypt the bytes to a string.
+        string roundtrip = RijndaelAlgorithm.DecryptStringFromBytes(encrypted, myRijndael.Key, myRijndael.IV);
+
+        //Display the original data and the decrypted data.
+        //Console.WriteLine("Original:   {0}", original);
+        //Console.WriteLine("Round Trip: {0}", roundtrip);
+
+        File.WriteAllBytes(filePath, encrypted);
+        WriteLine("Finished");
+      }
     }
 
 
@@ -51,9 +109,11 @@ namespace ConsoleTesting
 
     private static void TestAbstract()
     {
-      Car car = new Car();
-      car.tires = 7;
-      car.motor = "Jau";
+      Car car = new Car
+      {
+        tires = 7,
+        motor = "Jau"
+      };
     }
 
     private static void TestMatrixStuff()
@@ -381,9 +441,11 @@ namespace ConsoleTesting
 
     private static void TestAnalyzePerson()
     {
-      Person person = new Person();
-      person.FirstName = "Hans";
-      person.LastName = "Hinterlader";
+      Person person = new Person
+      {
+        FirstName = "Hans",
+        LastName = "Hinterlader"
+      };
 
       Type personType = person.GetType();
       WriteLine($"Typ: {personType.Name}");
@@ -444,7 +506,7 @@ namespace ConsoleTesting
       string first = ReadLine();
       string last = ReadLine();
 
-      Func<string, string, string> GetFullName = (firstName, lastName) => firstName + " " + lastName;
+      string GetFullName(string firstName, string lastName) => firstName + " " + lastName;
 
       WriteLine(GetFullName(first, last));
     }
