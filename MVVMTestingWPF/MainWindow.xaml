@@ -4,14 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMTestingWPF"
-        xmlns:vm="clr-namespace:MVVMTestingWPF.ViewModel"
+        xmlns:vm="clr-namespace:MVVMTestingWPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>
-    
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -23,6 +22,11 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+            <Button x:Name="UxListBoxWindowButton" Content="Open List Box Window" Click="UxListBoxWindowButton_Click"></Button>
+            <Button x:Name="UxSliderWindowButton" Content="Open Slider Window" Click="UxSliderWindowButton_Click"></Button>
+            <Button x:Name="UxMultipleImagesSliderButton" Content="Open Multiple Images Slider Window" Click="UxMultipleImagesSliderButton_Click"></Button>
+        </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Name"></TextBlock>
             <TextBox x:Name="UxNameTextBox" Text="{Binding Person.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>

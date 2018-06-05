@@ -32,7 +32,7 @@ namespace ConsoleTesting
 
     private static void Main(string[] args)
     {
-      TestMatrixStuff();
+      
 
 
       ReadKey();

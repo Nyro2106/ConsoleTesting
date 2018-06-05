@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVVMTestingWPF.View;
+using MVVMTestingWPF.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,24 @@ namespace MVVMTestingWPF
     public MainWindow()
     {
       InitializeComponent();
+    }
+
+    private void UxListBoxWindowButton_Click(object sender, RoutedEventArgs e)
+    {
+      ListBoxWindow window = new ListBoxWindow();
+      window.Show();
+    }
+
+    private void UxSliderWindowButton_Click(object sender, RoutedEventArgs e)
+    {
+      SliderWindow window = new SliderWindow();
+      window.Show();
+    }
+
+    private void UxMultipleImagesSliderButton_Click(object sender, RoutedEventArgs e)
+    {
+      MultipleImagesSliderWindow window = new MultipleImagesSliderWindow();
+      window.Show();
     }
   }
 }
