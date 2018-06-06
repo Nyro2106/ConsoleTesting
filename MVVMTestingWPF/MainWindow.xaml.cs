@@ -44,5 +44,11 @@ namespace MVVMTestingWPF
       MultipleImagesSliderWindow window = new MultipleImagesSliderWindow();
       window.Show();
     }
+
+    private void UxCommandTestWindowButton_Click(object sender, RoutedEventArgs e)
+    {
+      CommandTestWindow window = new CommandTestWindow();
+      window.Show();
+    }
   }
 }

@@ -26,6 +26,7 @@
             <Button x:Name="UxListBoxWindowButton" Content="Open List Box Window" Click="UxListBoxWindowButton_Click"></Button>
             <Button x:Name="UxSliderWindowButton" Content="Open Slider Window" Click="UxSliderWindowButton_Click"></Button>
             <Button x:Name="UxMultipleImagesSliderButton" Content="Open Multiple Images Slider Window" Click="UxMultipleImagesSliderButton_Click"></Button>
+            <Button x:Name="UxCommandTestWindowButton" Content="Open Command Test" Click="UxCommandTestWindowButton_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Name"></TextBlock>

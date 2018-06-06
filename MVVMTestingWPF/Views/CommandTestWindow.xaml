@@ -1,0 +1,23 @@
+﻿<Window x:Class="MVVMTestingWPF.Views.CommandTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMTestingWPF.Views"
+        xmlns:vm="clr-namespace:MVVMTestingWPF.ViewModels"
+        mc:Ignorable="d"
+        Title="CommandTestWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <vm:CommandTestWindowViewModel x:Key="viewModel"></vm:CommandTestWindowViewModel>
+    </Window.Resources>
+    
+    <Grid DataContext="{StaticResource viewModel}">
+        <StackPanel Width="250" VerticalAlignment="Center">
+            <Label Content="Bitte Namen eingeben"></Label>
+            <TextBox x:Name="UxInputTextBox" Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"></TextBox>            
+            <Button Content="Dann hier klicken" Command="{Binding SayHelloCommand}"></Button>
+            <TextBlock Text="{Binding Message}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -54,10 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Models\SliderImage.cs" />
+    <Compile Include="ViewModels\CommandTestWindowViewModel.cs" />
     <Compile Include="ViewModels\ListBoxWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MultipleSliderImagesViewModel.cs" />
+    <Compile Include="Views\CommandTestWindow.xaml.cs">
+      <DependentUpon>CommandTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListBoxWindow.xaml.cs">
       <DependentUpon>ListBoxWindow.xaml</DependentUpon>
     </Compile>
@@ -80,6 +85,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CommandTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ListBoxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
