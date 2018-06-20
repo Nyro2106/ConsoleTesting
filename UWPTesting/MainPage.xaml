@@ -25,6 +25,7 @@
             <Button x:Name="UxOpenAppLayoutButton" x:Uid="UxOpenAppLayoutButton" Click="UxOpenAppLayoutButton_Click" Visibility="Collapsed"></Button>
             <Button x:Name="UxStartFancySoundButton" x:Uid="UxStartSynth" Click="UxStartFancySoundButton_Click" HorizontalAlignment="Stretch"></Button>
             <Button x:Name="UxStartFancySoundButton2" x:Uid="UxStartSynth2" Click="UxStartFancySoundButton2_Click"></Button>
+            <Button x:Name="UxToast" Content="Toast me" Click="UxToast_Click"></Button>
         </StackPanel>
 
 

@@ -14,6 +14,7 @@
             <Button x:Name="UxOpenLompfOMatButton" Content="Lompf-O-Mat öffnen" Click="UxOpenLompfOMatButton_Click"/>
             <Button x:Name="UxOpenShortCutsAndCommandsButton" Content="Shortcuts and Commands" Click="UxOpenShortCutsAndCommandsButton_Click"/>
             <Button x:Name="UxOpenCryptography" Content="Kryptographie" Click="UxOpenCryptography_Click"></Button>
+            <Button x:Name="UxOpenToast" Content="Toast" Click="UxOpenToast_Click"></Button>
         </StackPanel>
        
 

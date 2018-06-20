@@ -4,8 +4,6 @@ using System.Linq;
 using ConsoleTesting.Delegates;
 using ConsoleTesting.Events;
 using ConsoleTesting.People;
-using ConsoleTesting.Exceptions;
-using ConsoleTesting.Shapes;
 using static System.Console;
 using ConsoleTesting.Extensions;
 using System.Diagnostics;
@@ -14,9 +12,6 @@ using System.IO;
 using ConsoleTesting.Disposition;
 using ConsoleTesting.Serialization;
 using ConsoleTesting.Restaurant;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using ConsoleTesting.Abstract;
 using System.Threading;
@@ -27,15 +22,35 @@ using System.Text;
 namespace ConsoleTesting
 {
   internal class Program
-  {
+  {    
     private static string desktopPath = @"C:\users\nyro\desktop\test.txt";
 
     private static void Main(string[] args)
     {
+   
+
       
 
 
       ReadKey();
+    }
+
+
+    private static void TestHumanLifeExpectancy()
+    {
+      var humans = new List<Human>()
+      {
+        new Human {Gender = "male", Cigarettes = 8, Vegetables = 2, BasicLifeExpectancy = 80},
+        new Human {Gender = "male", Cigarettes = 0, Vegetables = 6, BasicLifeExpectancy = 80},
+        new Human {Gender = "female", Cigarettes = 16, Vegetables = 1, BasicLifeExpectancy = 80},
+        new Human {Gender = "female", Cigarettes = 0, Vegetables = 4, BasicLifeExpectancy = 80},
+      };
+
+      foreach (var human in humans)
+      {
+        human.CalculateLifeExpectancy();
+        Console.WriteLine(human.GetInfo());
+      }
     }
 
     private static void TestDownloadCurrencyExchange()

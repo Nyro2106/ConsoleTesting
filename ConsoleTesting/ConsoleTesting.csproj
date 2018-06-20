@@ -51,6 +51,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\References\10.0.16299.0\Windows.Foundation.UniversalApiContract\5.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\Car.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="LINQ\Dish.cs" />
     <Compile Include="LINQ\WoWItem.cs" />
+    <Compile Include="People\Human.cs" />
     <Compile Include="Restaurant\Dish.cs" />
     <Compile Include="Restaurant\Guest.cs" />
     <Compile Include="Serialization\SerializablePerson.cs" />

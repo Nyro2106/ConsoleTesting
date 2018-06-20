@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.UI.Notifications;
 
 namespace WPFTesting
 {
@@ -47,6 +48,15 @@ namespace WPFTesting
     {
       CryptoWindow window = new CryptoWindow();
       window.Show();
+    }
+
+    private void UxOpenToast_Click(object sender, RoutedEventArgs e)
+    {
+      var templateContent = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+      templateContent.GetElementsByTagName("text")[0].InnerText = "Ich bin der Oberbumsknecht";
+      templateContent.GetElementsByTagName("text")[1].InnerText = "Über alle Arten von bitches";
+      ToastNotification notification = new ToastNotification(templateContent);
+      ToastNotificationManager.CreateToastNotifier().Show(notification);
     }
   }
 }

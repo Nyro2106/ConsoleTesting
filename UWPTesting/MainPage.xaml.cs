@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -63,6 +64,15 @@ namespace UWPTesting
       Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync(text3);
       mediaElement.SetSource(stream, stream.ContentType);
       mediaElement.Play();
+    }
+
+    private void UxToast_Click(object sender, RoutedEventArgs e)
+    {
+      var templateContent = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+      templateContent.GetElementsByTagName("text")[0].InnerText = "Daily Lompf News";
+      templateContent.GetElementsByTagName("text")[1].InnerText = "Feli is now officially the hottest girl in the galaxy";
+      ToastNotification notification = new ToastNotification(templateContent);
+      ToastNotificationManager.CreateToastNotifier().Show(notification);
     }
   }
 }
